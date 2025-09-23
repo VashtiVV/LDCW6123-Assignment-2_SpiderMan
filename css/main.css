@@ -1,0 +1,472 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+}
+
+/* Color scheme */
+:root {
+    --red: #e50914;
+    --black: #000000;
+    --dark-gray: #1a1a1a;
+    --light-gray: #e0e0e0;
+    --off-white: #f5f5f5;
+    --blue: #007BFF;
+}
+
+/* Overall container and layout */
+#container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('../images/background1.jpeg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#side-nav {
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+#side-nav ul {
+    list-style: none;
+}
+
+#side-nav li {
+    color: var(--light-gray);
+    padding: 15px 25px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#side-nav li:hover,
+#side-nav li.active {
+    background-color: rgba(229, 9, 20, 0.2);
+    border-left: 5px solid var(--red);
+    color: var(--red);
+}
+
+#main-content {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+#logo-header {
+    margin-bottom: 50px;
+}
+
+#logo {
+    width: 300px;
+    height: auto;
+    user-select: none;
+}
+
+/* Search and results section */
+#results-section {
+    width: 100%;
+    max-width: 1100px;
+    color: var(--light-gray);
+}
+
+#search-bar-section {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-color: var(--dark-gray);
+    padding: 8px 15px;
+}
+
+#search-input {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
+    color: var(--light-gray);
+    transition: box-shadow 0.3s ease;
+}
+
+#search-input::placeholder {
+    color: #777;
+}
+
+#search-input:focus {
+    box-shadow: 0 0 0 2px var(--red);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#search-button {
+    background-color: var(--red);
+    color: var(--off-white);
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#search-button:hover {
+    background-color: #b21818;
+    transform: scale(1.05);
+}
+
+#search-button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    filter: invert(100%);
+}
+
+#loading-indicator {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: -45px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    user-select: none;
+}
+
+/* Movie grid layout */
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+}
+
+.movie-card {
+    background-color: var(--dark-gray);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: calc(25% - 20px);
+    flex: 0 0 auto;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.5);
+}
+
+.movie-poster {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.movie-title {
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--light-gray);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-top: 1px solid #333;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--red);
+    padding: 20px 0;
+}
+
+/* Synopsis Page Grid Layout */
+.synopsis-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "poster title"
+        "poster synopsis"
+        "details-and-crew synopsis";
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.synopsis-grid h2 {
+    font-family: 'Bangers', cursive, Impact, sans-serif;
+    font-size: 1.5rem;
+    color: var(--red);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.synopsis-title {
+    grid-area: title;
+    font-family: 'Bangers', cursive, Impact, sans-serif;
+    font-size: 3.5rem;
+    color: var(--light-gray);
+    letter-spacing: 4px;
+    align-self: end;
+}
+
+.synopsis-poster {
+    grid-area: poster;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    max-width: 350px;
+    justify-self: start;
+}
+
+.synopsis-section {
+    grid-area: synopsis;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.details-and-crew {
+    grid-area: details-and-crew;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.details-and-crew h2 {
+    font-family: 'Bangers', cursive, Impact, sans-serif;
+    font-size: 1.5rem;
+    color: var(--red);
+    margin-top: 20px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.details-and-crew h2:first-of-type {
+    margin-top: 0;
+}
+
+.synopsis-button {
+    background-color: var(--red);
+    color: var(--off-white);
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.synopsis-button:hover {
+    background-color: #b21818;
+    transform: translateY(-2px);
+}
+
+.details-and-crew a.search-link {
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.details-and-crew a.search-link:hover {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+/* Coming Soon Page Specific Styles */
+#coming-soon-section {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--light-gray);
+}
+
+#coming-soon-section h1 {
+    text-align: center;
+    font-family: 'Bangers', cursive, Impact, sans-serif;
+    font-size: 3.5rem;
+    color: var(--red);
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.movie-coming-soon {
+    display: flex;
+    align-items: center;
+    background-color: rgba(28, 28, 28, 0.8);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-coming-soon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+.movie-coming-soon img.movie-poster {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+    border: 2px solid var(--red);
+}
+
+.movie-details {
+    flex: 1;
+}
+
+.movie-details h2 {
+    font-size: 1.8rem;
+    color: var(--light-gray);
+    margin-bottom: 5px;
+}
+
+.movie-details p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+/* Animations and Responsiveness */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 900px) {
+    .synopsis-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "poster"
+            "synopsis"
+            "details-and-crew";
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .synopsis-poster {
+        justify-self: center;
+    }
+
+    .synopsis-title,
+    .synopsis-section,
+    .details-and-crew {
+        text-align: center;
+    }
+
+    #container {
+        flex-direction: column;
+    }
+
+    #side-nav {
+        width: 100%;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    #side-nav ul {
+        flex-direction: row;
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #side-nav li {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    #logo-header {
+        display: none;
+    }
+
+    #search-bar-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #search-input {
+        width: 80%;
+    }
+}
+
+#side-nav li {
+    display: flex;
+    align-items: center; /* This is key for vertical alignment */
+    gap: 15px; /* Adds space between the icon and text */
+    padding: 12px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+#side-nav li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-icon {
+    width: 28px; /* Adjust the size of the icon */
+    height: 28px;
+    fill: var(--light-gray); /* Default color for the icon */
+    transition: fill 0.3s ease;
+}
+
+#side-nav li:hover .nav-icon {
+    fill: white; /* Color on hover */
+}

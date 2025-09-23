@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spider-Man Movie Hub</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" defer></script>
+    <script src="../javascript/script.js" defer></script>
+</head>
+
+<body>
+    <div id="container">
+        <nav id="side-nav">
+            <ul>
+                <li class="nav-link active" data-page="home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="nav-icon">
+                        <path d="M12 2.25a.75.75 0 00-1.28.525l-3.333 4.96a.75.75 0 00.525 1.28h.75A2.25 2.25 0 0110.5 10.5v8.25a.75.75 0 00.75.75h2.25a.75.75 0 00.75-.75v-8.25a2.25 2.25 0 012.25-2.25h.75a.75.75 0 00.525-1.28l-3.333-4.96a.75.75 0 00-.525-.225zM15.58 12.396A.75.75 0 0015.548 11h-3.097c-.27 0-.523.155-.65.4l-1.5 2.25a.75.75 0 00.916 1.134l.215-.143a.75.75 0 00.605-1.272l-1.378-2.053h2.388c.27 0 .523-.155.65-.4l1.5-2.25a.75.75 0 00-.916-1.134l-.215.143a.75.75 0 00-.605 1.272z" />
+                    </svg>
+                    <span>Home</span>
+                </li>
+                <li class="nav-link" data-page="coming-soon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="nav-icon">
+                        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/>
+                    </svg>
+                    <span>Coming Soon</span>
+                </li>
+                <li class="nav-link" data-page="list-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="nav-icon">
+                        <path d="M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h18v2H3v-2z"/>
+                    </svg>
+                    <span>List All</span>
+                </li>
+            </ul>
+        </nav>
+        <main id="main-content">
+            <header id="logo-header">
+                <img src="../images/logo.png" alt="Site Logo" id="logo" />
+            </header>
+
+            <section id="search-bar-section">
+                <input type="text" id="search-input" placeholder="Search for Spider-Man movies..."
+                    aria-label="Search movies" />
+                <button id="search-button" aria-label="Search">
+                    Search
+                    <img id="search-spinner" src="../images/spider-web.svg" alt="Loading" aria-hidden="true"
+                        style="display: none; width: 20px; height: 20px; margin-left: 8px;" />
+                </button>
+            </section>
+
+            <section id="coming-soon-section">
+                <h1 id="animated-title"></h1>
+                <div class="movie-coming-soon">
+                    <img src="../images/spiderman-brand-new-day.jpg" alt="Spider-Man: Brand New Day Poster" class="movie-poster" />
+                    <div class="movie-details">
+                        <h2>Spider-Man: Brand New Day</h2>
+                        <p>Get ready for the new era of Spider-Man as we dive into fresh adventures, new villains, and the evolution of our beloved hero.</p>
+                    </div>
+                </div>
+
+                <div class="movie-coming-soon">
+                    <img src="../images/spiderman-beyond-the-spider-verse.jpg" alt="Spider-Man: Beyond the Spider-Verse Poster" class="movie-poster" />
+                    <div class="movie-details">
+                        <h2>Spider-Man: Beyond the Spider-Verse</h2>
+                        <p>The Spider-Verse expands even further as new dimensions open, bringing unexpected heroes and villains!</p>
+                    </div>
+                </div>
+
+                <div class="movie-coming-soon">
+                    <img src="../images/spider-noir-series.jpg" alt="Spider-Noir Series Poster" class="movie-poster" />
+                    <div class="movie-details">
+                        <h2>Spider-Noir/Spider-Man Live-Action Noir Series</h2>
+                        <p>Step into the dark and gritty world of Spider-Noir, where Spider-Man fights crime in a 1930s noir-inspired universe.</p>
+                    </div>
+                </div>
+
+                <div class="movie-coming-soon">
+                    <img src="../images/madame-web.jpg" alt="Madame Web Poster" class="movie-poster" />
+                    <div class="movie-details">
+                        <h2>Madame Web (2024)</h2>
+                        <p>Unravel the mysteries of the web, as Madame Web takes the spotlight in this mind-bending Spider-Man spin-off.</p>
+                    </div>
+                </div>
+
+                <div class="movie-coming-soon">
+                    <img src="../images/silk-spider-society-series.jpeg" alt="Silk: Spider Society Series Poster" class="movie-poster" />
+                    <div class="movie-details">
+                        <h2>Silk: Spider Society Series</h2>
+                        <p>Join Cindy Moon in her battle to form the Spider Society while uncovering secrets from her past!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="results-section">
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
