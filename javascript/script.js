@@ -186,7 +186,7 @@ const movies = [
     }
 ];
 
-// Utility to create element with classes & attributes
+//utility to create element with classes & attributes
 function createElement(tag, classNames, attributes = {}) {
     const el = document.createElement(tag);
     if (classNames) el.className = classNames;
@@ -196,7 +196,7 @@ function createElement(tag, classNames, attributes = {}) {
     return el;
 }
 
-// Global references
+//global references
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 const resultsSection = document.getElementById('results-section');
@@ -205,7 +205,7 @@ const sideNavLinks = document.querySelectorAll('#side-nav li');
 const mainContent = document.getElementById('main-content');
 const searchSpinner = document.getElementById('search-spinner');
 
-// GSAP loading rotation tween reference
+//GSAP loading rotation tween reference
 let loadingTween = null;
 
 function showLoading() {
@@ -262,7 +262,6 @@ function renderMovieList(movieArray) {
         card.appendChild(title);
 
         card.addEventListener('click', () => {
-            // FIXED: Template literal for location.hash was incorrect.
             location.hash = `#${movie.id}`;
             renderSynopsisPage(movie.id);
         });
@@ -278,14 +277,14 @@ function renderMovieList(movieArray) {
     resultsSection.appendChild(listContainer);
 }
 
-// No results found with scroll suggestion to show all movies
+//no results found with scroll suggestion to show all movies
 function showNoResults() {
     resultsSection.innerHTML = '';
     const noResultDiv = createElement('div', 'no-results');
     noResultDiv.textContent = 'No search results';
     resultsSection.appendChild(noResultDiv);
 
-    // Show full movie list when user scrolls to bottom
+    //show full movie list when user scrolls to bottom
     function onScroll() {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
             renderMovieList(movies);
@@ -295,7 +294,7 @@ function showNoResults() {
     window.addEventListener('scroll', onScroll);
 }
 
-// Render synopsis page for a movie
+//Render synopsis page for a movieeeeee
 function renderSynopsisPage(movieId) {
     const movie = movies.find((m) => m.id === movieId);
     if (!movie) {
@@ -303,42 +302,39 @@ function renderSynopsisPage(movieId) {
         return;
     }
 
-    // Set the backdrop to the default image, instead of the movie's specific one
+    //Set the backdrop to the default image, instead of the movie's specific one
     const mainContainer = document.getElementById('container');
     mainContainer.style.backgroundImage = 'url(\'../images/background1.jpg\')';
     mainContainer.style.backgroundSize = 'cover';
     mainContainer.style.backgroundPosition = 'center';
     mainContainer.style.backgroundRepeat = 'no-repeat';
-
-    // Apply a black overlay to the main content area for better text readability
     mainContent.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
     mainContent.style.transition = 'background-color 0.8s ease-in-out';
 
     resultsSection.innerHTML = '';
 
-    // Create the new grid layout
+    //create the new grid layout
     const synopsisGrid = createElement('div', 'synopsis-grid');
 
-    // Movie Poster
+    //movie Poster
     const poster = createElement('img', 'synopsis-poster', {
         src: movie.poster,
         alt: `${movie.title} poster`
     });
 
-    // Movie Title
+    //Movie Title
     const title = createElement('h1', 'synopsis-title');
     title.textContent = movie.title;
 
-    // Synopsis Section
+    //Synopsis Section
     const synopsisSection = createElement('div', 'synopsis-item synopsis-section');
     synopsisSection.innerHTML = `
         <h2>Synopsis</h2>
         <p>${movie.synopsis}</p>
     `;
 
-    // Function to create a list of clickable links
+    //Function to create a list of clickable links
     const createClickableList = (names) => {
-        // FIXED: This part had a syntax error. It should use template literals correctly.
         return names.map(name => {
             const encodedName = encodeURIComponent(name);
             return `<a href="https://www.google.com/search?q=${encodedName}" target="_blank" class="search-link">${name}</a>`;
@@ -374,21 +370,19 @@ function renderSynopsisPage(movieId) {
 
 }
 
-// Render home page content
+//render home page content
 function renderHome() {
-    // Hide the coming soon content and show the main content sections
+    //hide the coming soon content and show the main content sections
     document.getElementById('coming-soon-section').style.display = 'none';
     document.getElementById('search-bar-section').style.display = 'flex';
     document.getElementById('results-section').style.display = 'block';
-
-    // Reset the background to the main one when going back to home
     const mainContainer = document.getElementById('container');
     mainContainer.style.backgroundImage = 'url(\'../images/background1.jpg\')';
     mainContainer.style.backgroundSize = 'cover';
     mainContainer.style.backgroundPosition = 'center top';
     mainContainer.style.backgroundRepeat = 'no-repeat';
 
-    // Reset main content background
+    //reset main content background
     mainContent.style.backgroundColor = 'transparent';
 
     resultsSection.innerHTML = '';
@@ -403,21 +397,21 @@ function renderHome() {
     resultsSection.appendChild(welcome);
 }
 
-// Render coming soon placeholder
+//render coming soon placeholder
 function renderComingSoon() {
-    // Hide the other content sections and show the coming soon content
+    //hide the other content sections and show the coming soon content
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('search-bar-section').style.display = 'none';
     document.getElementById('coming-soon-section').style.display = 'block';
 
-    // Reset the background to the main one
+    //reset the background to the main one
     const mainContainer = document.getElementById('container');
     mainContainer.style.backgroundImage = 'url(\'../images/background1.jpg\')';
     mainContainer.style.backgroundSize = 'cover';
     mainContainer.style.backgroundPosition = 'center top';
     mainContainer.style.backgroundRepeat = 'no-repeat';
 
-    // Reset main content background
+    //reset main content background
     mainContent.style.backgroundColor = 'transparent';
 
     gsap.from("#animated-title", {
@@ -428,7 +422,7 @@ function renderComingSoon() {
     });
 }
 
-// List all Spider-Man movies
+//list all Spider-Man movies
 function renderListAll() {
     // Hide the coming soon content and show the main content sections
     document.getElementById('coming-soon-section').style.display = 'none';
@@ -438,7 +432,7 @@ function renderListAll() {
     renderMovieList(movies);
 }
 
-// Hash change handler for direct movie links
+//hash change handler for direct movie links
 function handleHashChange() {
     const hash = location.hash.substring(1);
     if (!hash) {
@@ -456,11 +450,11 @@ function handleHashChange() {
 window.addEventListener('hashchange', handleHashChange);
 window.addEventListener('load', handleHashChange);
 
-// Search function with loading spinner
+//search function with loading spinner
 function normalize(str) {
     return str
         .toLowerCase()
-        .replace(/[^a-z0-9]/g, ''); // remove everything except letters & numbers
+        .replace(/[^a-z0-9]/g, ''); 
 }
 
 function performSearch() {
@@ -509,10 +503,8 @@ sideNavLinks.forEach((link) => {
             location.hash = '';
         } else if (page === 'coming-soon') {
             renderComingSoon();
-       // location.hash = '';
         } else if (page === 'list-all') {
             renderListAll();
-       //location.hash = '';
         }
     });
 });
