@@ -1,4 +1,4 @@
-// Open Google search in new tab for a person
+// redirect to new tab for google search results
 function openGoogleSearch(name) {
   const url = `https://www.google.com/search?q=${encodeURIComponent(name)}`;
   window.open(url, '_blank');
